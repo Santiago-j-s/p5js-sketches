@@ -1,10 +1,10 @@
-name = "remix-cloudflare-workers"
+name = "p5js-sketches"
 type = "javascript"
 
-zone_id = ""
 account_id = ""
 route = ""
 workers_dev = true
+zone_id = ""
 
 [site]
 bucket = "./public"
@@ -15,4 +15,4 @@ command = "npm run build:worker"
 watch_dir = "build/index.js"
 
 [build.upload]
-format="service-worker"
+format = "service-worker"
