@@ -6,6 +6,12 @@ route = ""
 workers_dev = true
 zone_id = ""
 
+compatibility_date = "2021-12-17"
+
+kv_namespaces = [
+  {binding = "KV", id = "d470f8fef2fb416da2389da06100e9ea"},
+]
+
 [site]
 bucket = "./public"
 entry-point = "."

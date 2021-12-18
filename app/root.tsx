@@ -6,7 +6,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch
+  useCatch,
+  useMatches,
 } from "remix";
 import type { LinksFunction } from "remix";
 
@@ -20,19 +21,25 @@ export let links: LinksFunction = () => {
     {
       rel: "stylesheet",
       href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)"
-    }
+      media: "(prefers-color-scheme: dark)",
+    },
   ];
 };
 
 // https://remix.run/api/conventions#default-export
 // https://remix.run/api/conventions#route-filenames
 export default function App() {
+  const matches = useMatches();
+  const withoutLayout = matches.some((match) => match.handle?.withoutLayout);
   return (
     <Document>
-      <Layout>
+      {withoutLayout ? (
         <Outlet />
-      </Layout>
+      ) : (
+        <Layout>
+          <Outlet />
+        </Layout>
+      )}
     </Document>
   );
 }
@@ -95,7 +102,7 @@ export function CatchBoundary() {
 
 function Document({
   children,
-  title
+  title,
 }: {
   children: React.ReactNode;
   title?: string;
